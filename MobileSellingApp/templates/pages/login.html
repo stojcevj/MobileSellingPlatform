@@ -1,0 +1,26 @@
+{% extends 'master.html' %}
+
+{% block content %}
+    <div class="container border border-1 border-danger rounded-4 pt-5 pb-5 m-5 px-0">
+        <div class="d-flex justify-content-center">
+            <div class="w-50 mx-5 border-end border-1 border-dark">
+                <form action="/login" method="post">
+                    {% csrf_token %}
+                    <div class="form-group w-75 mb-4">
+                        <label for="email" class="form-label">Е-маил</label>
+                        <input type="text" name="email" id="email" placeholder="someone@example.com" class="form-control border-1 border-dark">
+                    </div>
+                    <div class="form-group w-75 mb-4">
+                        <label for="password" class="form-label">Лозинка</label>
+                        <input type="password" name="password" id="password" class="form-control border-1 border-dark">
+                    </div>
+                    <input type="submit" value="Најави се" class="rounded-2 bg-dark text-white fw-bold px-5 py-2 w-75 text-center">
+                </form>
+            </div>
+            <div class="w-25">
+                <span class="text fw-bold d-block">Доколку сакате да се регистрирате притеснете на следното.</span>
+                <a href="" class="fw-bold">Регистриај се</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

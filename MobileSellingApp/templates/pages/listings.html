@@ -1,0 +1,43 @@
+{% extends 'master.html' %}
+
+{% block content %}
+    <div class="container p-5 m-auto mb-5 mt-5 d-flex flex-wrap">
+       {% for listing in listings %}
+        <div class="card mx-1 mb-3" style="width: 18rem;">
+          <img src="{{ MEDIA_URL }}{{ listing.listing_image.url }}" class="card-img-top h-100" alt="...">
+          <div class="card-body text-center">
+            <h5 class="card-title">{{ listing.listing_price }} ден. <span class="text-success">{{ listing.listing_condition.title }}</span></h5>
+            <h5 class="card-title">{{ listing.listing_title }}</h5>
+            <p class="card-text">{{ listing.listing_description }}</p>
+              <table class="table">
+                  <thead>
+                    <th>Марка</th>
+                    <th>Модел</th>
+                  </thead>
+                  <tbody>
+                    <tr>
+                        <td>{{ listing.listing_make }}</td>
+                        <td>{{ listing.listing_model }}</td>
+                    </tr>
+                  </tbody>
+              </table>
+              <table class="table">
+                  <thead>
+                    <th>Внатрешна меморија</th>
+                    <th >РАМ меморија</th>
+                  </thead>
+                  <tbody>
+                    <tr>
+                        <td>{{ listing.listing_internal_memory }}</td>
+                        <td>{{ listing.listing_ram }}</td>
+                    </tr>
+                  </tbody>
+              </table>
+              <div class="d-flex justify-content-center">
+                  <a href="#" class="btn btn-danger rounded-pill text-center px-4">Купи</a>
+              </div>
+          </div>
+        </div>
+       {% endfor %}
+    </div>
+{% endblock %}

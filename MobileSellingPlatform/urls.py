@@ -18,11 +18,16 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 
-from MobileSellingApp.views import index, login
+from MobileSellingApp.views import index, login, logout, register, contact, addlisting, listings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
     path('index/', index, name='index'),
-    path('login/', login, name='login')
+    path('login/', login, name='login'),
+    path('logout/', logout, name='logout'),
+    path('register/', register, name='register'),
+    path('contact/', contact, name='contact'),
+    path('addlisting/', addlisting, name='addlisting'),
+    path('listings/', listings, name='listings'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

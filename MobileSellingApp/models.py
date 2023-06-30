@@ -5,14 +5,14 @@ from django.db import models
 
 
 class Profile(models.Model):
-    profile_first_name = models.CharField(max_length=50)
-    profile_last_name = models.CharField(max_length=50)
-    profile_date_of_birth = models.DateField()
-    profile_phone_number = models.CharField(max_length=9)
-    profile_email = models.EmailField()
-    profile_password = models.CharField(max_length=70)
+    profile_first_name = models.CharField(max_length=50, verbose_name="Име")
+    profile_last_name = models.CharField(max_length=50,  verbose_name="Презиме")
+    profile_date_of_birth = models.DateField(verbose_name="Дата на раѓање")
+    profile_phone_number = models.CharField(max_length=9, verbose_name="Телефонски број")
+    profile_email = models.EmailField(verbose_name="Е-маил")
+    profile_password = models.CharField(max_length=70, verbose_name="Лозинка")
     profile_user = models.ForeignKey(User, on_delete=models.CASCADE, editable=False)
-    profile_image = models.ImageField(upload_to="images/profile/", null=True, blank=True)
+    profile_image = models.ImageField(upload_to="images/profile/", null=True, blank=True, verbose_name="Слика")
 
     def __str__(self):
         return self.profile_first_name + " " + self.profile_email
@@ -27,7 +27,7 @@ class MobileListing(models.Model):
         ("LG", "LG"),
         ("NOKIA", "Nokia"),
         ("BLACKVIEW", "Blackview"),
-        ("OTHER", "Other")
+        ("OTHER", "Останато")
     )
 
     PHONE_RAM_MEMORY = (
@@ -38,7 +38,7 @@ class MobileListing(models.Model):
         ("6GB", "6Gb"),
         ("8GB", "8Gb"),
         ("12GB", "12Gb"),
-        ("OTHER", "Other"),
+        ("OTHER", "Останато"),
     )
 
     PHONE_INTERNAL_MEMORY = (
@@ -49,25 +49,25 @@ class MobileListing(models.Model):
         ("128GB", "128Gb"),
         ("256GB", "256Gb"),
         ("512GB", "512Gb"),
-        ("OTHER", "Other"),
+        ("OTHER", "Останато"),
     )
 
     PHONE_CONDITION = (
-        ("NEW", "New"),
-        ("USED", "Used"),
+        ("NEW", "Користен"),
+        ("USED", "Нов"),
     )
 
     listing_profile = models.ForeignKey(Profile, on_delete=models.CASCADE, editable=False)
-    listing_title = models.CharField(max_length=30)
-    listing_description = models.TextField(max_length=300)
-    listing_make = models.CharField(choices=PHONE_MAKE, default="OTHER", max_length=20)
-    listing_model = models.CharField(max_length=20)
-    listing_color = models.CharField(max_length=30)
-    listing_internal_memory = models.CharField(choices=PHONE_INTERNAL_MEMORY, default="OTHER", max_length=20)
-    listing_ram = models.CharField(choices=PHONE_RAM_MEMORY, default="OTHER", max_length=20)
-    listing_condition = models.CharField(choices=PHONE_CONDITION, default="USED", max_length=20)
-    listing_price = models.IntegerField()
-    listing_image = models.ImageField(null=True, blank=True, upload_to="images/listing/")
+    listing_title = models.CharField(max_length=30, verbose_name="Наслов")
+    listing_description = models.TextField(max_length=300, verbose_name="Опис")
+    listing_make = models.CharField(choices=PHONE_MAKE, default="OTHER", max_length=20, verbose_name="Марка")
+    listing_model = models.CharField(max_length=20, verbose_name="Модел")
+    listing_color = models.CharField(max_length=30, verbose_name="Боја")
+    listing_internal_memory = models.CharField(choices=PHONE_INTERNAL_MEMORY, default="OTHER", max_length=20, verbose_name="Внатрешна меморија")
+    listing_ram = models.CharField(choices=PHONE_RAM_MEMORY, default="OTHER", max_length=20, verbose_name="РАМ меморија")
+    listing_condition = models.CharField(choices=PHONE_CONDITION, default="USED", max_length=20, verbose_name="Состојба")
+    listing_price = models.IntegerField(verbose_name="Цена")
+    listing_image = models.ImageField(null=True, blank=True, upload_to="images/listing/", verbose_name="Слика")
 
     def __str__(self):
         return self.listing_title + " " + self.listing_price.__str__()

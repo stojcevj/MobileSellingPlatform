@@ -1,14 +1,23 @@
 {% extends 'master.html' %}
 
 {% block content %}
-    <div class="container border border-1 border-danger rounded-4 pt-5 pb-5 m-5 px-0">
-        <div class="d-flex justify-content-center">
+    <div class="container border border-1 border-danger rounded-4 pt-5 pb-5 m-auto mb-5 mt-5 px-0">
+        <div class="d-flex">
             <div class="w-50 mx-5 border-end border-1 border-dark">
-                <form action="/login" method="post">
+                <form action="/login/" method="post">
+                    <div class="form-group">
+                        <ul>
+                             {% if errors != '' %}
+                                <li class="text-danger">
+                                    <span class="text-danger">{{ errors }}</span>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
                     {% csrf_token %}
                     <div class="form-group w-75 mb-4">
-                        <label for="email" class="form-label">Е-маил</label>
-                        <input type="text" name="email" id="email" placeholder="someone@example.com" class="form-control border-1 border-dark">
+                        <label for="username" class="form-label">Е-маил</label>
+                        <input type="text" name="username" id="username" placeholder="someone@example.com" class="form-control border-1 border-dark">
                     </div>
                     <div class="form-group w-75 mb-4">
                         <label for="password" class="form-label">Лозинка</label>
@@ -19,7 +28,7 @@
             </div>
             <div class="w-25">
                 <span class="text fw-bold d-block">Доколку сакате да се регистрирате притеснете на следното.</span>
-                <a href="" class="fw-bold">Регистриај се</a>
+                <a href="{% url 'register' %}" class="fw-bold">Регистриај се</a>
             </div>
         </div>
     </div>
